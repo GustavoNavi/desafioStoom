@@ -22,7 +22,13 @@ export const StySpanContainer = styled.div`
     & > span:first-of-type {
         text-align: start;
         padding-top: 40px;
-        padding-bottom: 100px;
+        padding-bottom: 80px;
+    }
+
+    & > span:nth-child(2) {
+        text-align: start;
+        padding-bottom: 20px;
+        text-decoration: underline;
     }
 
     & > span:last-of-type {
@@ -35,10 +41,11 @@ export const StySpanContainer = styled.div`
 
 export const StyItems = styled.div`
     display: flex;
+    flex-direction: column;
     padding-bottom: 100px;
 
-    & > span:first-of-type {
-        width: 70%;
+    & > span {
+        padding-bottom: 5px;
         display: flex;
         text-align: start;
     }

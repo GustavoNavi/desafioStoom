@@ -43,3 +43,24 @@ export const StyItems = styled.div`
         text-align: start;
     }
 `;
+
+export const StyRegister = styled.div`
+
+`;
+
+export const StyRow = styled.div`
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 35px;
+`;
+
+export const StyInputContent = styled.div`
+    width: 30%;
+    display: inline-grid;
+    justify-items: flex-start;
+
+    input {
+        width: 100%;
+        height: 30px;
+    }
+`;

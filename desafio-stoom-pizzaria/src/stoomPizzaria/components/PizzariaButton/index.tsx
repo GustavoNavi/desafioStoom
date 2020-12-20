@@ -32,7 +32,7 @@ export const PizzariaButton: React.FC<Props> = ({
       <button
         type={type}
         id={`${id}-button-id`}
-        onClick={action}
+        onClick={disable ? () => null : action}
         {...rest}
       >
             <span>{title}</span>
