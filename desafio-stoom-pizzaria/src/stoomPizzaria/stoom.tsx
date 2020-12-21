@@ -2,7 +2,7 @@ import React from 'react';
 import { IPage } from './ts/interfaces/route-interfaces';
 import RouteManager from './routes/route-manager';
 import GlobalStyle from './styles/global';
-import CommonsProvider from './store/context';
+import PizzaProvider from './store/context';
 import PizzaImg from '../assets/images/pizzaStoom.jpg';
 import { StyContainer, StyContent } from './styles';
 
@@ -17,7 +17,7 @@ export const StoomPizzaria: React.FC<IPizzaria> = ({
 }) => {
 
   return (
-    <CommonsProvider
+    <PizzaProvider
       product="pizzariaStoom"
       pages={pages}
     >
@@ -29,7 +29,6 @@ export const StoomPizzaria: React.FC<IPizzaria> = ({
           <div style={{height: '10px'}}/>
         </StyContent>
       </StyContainer>
-        
-    </CommonsProvider>
+    </PizzaProvider>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { IPage } from '../ts/interfaces/route-interfaces';
 
 interface IPizzariaProvider {
@@ -12,6 +12,12 @@ const PizzariaProvider: React.FC<IPizzariaProvider> = ({
   pages,
   children,
 }) => {
+
+  const [firstRenderr, setFirstRender] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+      sessionStorage.setItem('reloaded', 'true');
+  }, [])
 
   return (
     <PizzariaContext.Provider
