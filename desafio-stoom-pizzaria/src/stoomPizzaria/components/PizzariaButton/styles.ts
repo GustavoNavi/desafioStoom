@@ -11,7 +11,7 @@ export const StyContainer = styled.div<IsStyContainer>`
   border-radius: 2px;
   background: #ffbc40;
   border-radius: 5px;
-  width: ${(props) => props.width ? props.width : '70px'};
+  width: ${(props) => props.width ? props.width : '100px'};
   height: ${(props) => props.height ? props.width : '40px'};
   button {
     width: 100%;

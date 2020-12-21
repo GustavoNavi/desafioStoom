@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import { StoomPizzaria } from './stoomPizzaria/stoom';
 
 ReactDOM.render(
-  <StoomPizzaria />,
+  <StoomPizzaria/>,
   document.getElementById('root')
 );

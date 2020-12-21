@@ -8,7 +8,7 @@ export interface IsStyContainer {
 
 export const StyContainer = styled.div<IsStyContainer>`
   max-width: auto;
-  width: ${(props) => props.width ? props.width : '70px'};
+  width: ${(props) => props.width ? props.width : '100px'};
   height: ${(props) => props.height ? props.width : '40px'};
   background: transparent;
   border-radius: 5px;

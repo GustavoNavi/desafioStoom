@@ -17,6 +17,7 @@ export const StyButtonContainer = styled.div`
 export const StySpanContainer = styled.div`
     display: flex;
     flex-direction: column;
+    margin-bottom: 25px;
 
     & > span:first-of-type {
         padding-top: 15px;

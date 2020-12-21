@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
@@ -13,9 +13,9 @@ export const PizzaPayment: React.FC = () => {
     const [phone, setPhone] = useState<string | number>('');
     const [email, setEmail] = useState<string>('');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         sessionStorage.removeItem('personalInformation');
-    }, [])
+    }, []);
 
     function onSubmit() {
         sessionStorage.setItem('personalInformation', `Nome: ${name}; Endereço: ${address}; Telefone: ${phone}; Email: ${email}`);
@@ -54,7 +54,7 @@ export const PizzaPayment: React.FC = () => {
                 <span>Passo 6 de 7</span>
             </StySpanContainer>
                 <StyButtonContainer>
-                    <HstOnlyBorderButton id="button-id" onClick={() => changeRoute('pizza-side-dish')} title="Voltar"/>
+                    <HstOnlyBorderButton id="button-id" action={() => changeRoute('pizza-side-dish')} title="Voltar"/>
                     <PizzariaButton disable={name && address && phone && email ? false : true} id="button-id" action={() => onSubmit()} title="Próximo"/>
                 </StyButtonContainer>
             </PizzariaPage>

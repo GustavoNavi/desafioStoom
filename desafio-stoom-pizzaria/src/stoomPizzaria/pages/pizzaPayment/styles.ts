@@ -18,6 +18,7 @@ export const StySpanContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 25px;
 
     & > span:first-of-type {
         text-align: start;

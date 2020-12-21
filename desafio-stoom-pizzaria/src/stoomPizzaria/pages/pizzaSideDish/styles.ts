@@ -18,6 +18,7 @@ export const StySpanContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 25px;
 
     & > span:first-of-type {
         text-align: start;
@@ -33,13 +34,32 @@ export const StySpanContainer = styled.div`
     }
 `;
 
-export const StyItems = styled.div`
+interface IItems {
+    readonly selected: boolean;
+}
+
+export const StyItems = styled.div<IItems>`
     display: flex;
-    padding-bottom: 100px;
+    height: 40px;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+    padding-left: 5px;
+    cursor: pointer;
+    background-color: ${(props) => props.selected ? '#fff3e0' : 'transparent'};
 
     & > span:first-of-type {
         width: 70%;
         display: flex;
         text-align: start;
     }
+
+    :hover {
+        background-color: #fff3e0;
+    }
+`;
+
+export const StyContainerItems = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
