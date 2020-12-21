@@ -15,6 +15,8 @@ export const PizzaPayment: React.FC = () => {
     const [address, setAddress] = useState<string>('');
     const [phone, setPhone] = useState<string | number>('');
     const [email, setEmail] = useState<string>('');
+    const numberPattern: RegExp = /^[0-9]*$/;
+    const lettersPattern: RegExp = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\s]+$/;
 
         /**
      * @description Remove sessionStorage.
@@ -30,6 +32,20 @@ export const PizzaPayment: React.FC = () => {
         sessionStorage.setItem('personalInformation', `Nome: ${name}; Endereço: ${address}; Telefone: ${phone}; Email: ${email}`);
         changeRoute('pizza-order');
     }
+
+    function handleInputName(event: any) {
+        const match: boolean = lettersPattern.test(event.target.value);
+      if (match) {
+        setName(event.target.value);
+      }
+    }
+
+    function handleInputNumber(event: any) {
+          const match: boolean = numberPattern.test(event.target.value);
+          if (match) {
+            setPhone(event.target.value);
+          }
+      }
         
         return (
             <PizzariaPage hasMargin={true} hasShadow={true}>
@@ -39,21 +55,21 @@ export const PizzaPayment: React.FC = () => {
                         <StyRow id="row-1-id">
                             <StyInputContent id="input-1-id">
                                 <span>Nome</span>
-                                <input id="input-name-id" onChange={(data: any) => setName(data.target.value)}/>
+                                <input maxLength={50} value={name} id="input-name-id" onChange={ handleInputName}/>
                             </StyInputContent>
                             <StyInputContent id="input-2-id">
                                 <span>Endereço</span>
-                                <input id="input-address-id" onChange={(data: any) => setAddress(data.target.value)}/>
+                                <input maxLength={50} id="input-address-id" onChange={(data: any) => setAddress(data.target.value)}/>
                             </StyInputContent>
                         </StyRow>
                         <StyRow id="row-2-id">
                             <StyInputContent id="input-3-id">
                                 <span>Telefone</span>
-                                <input id="input-phone-id" onChange={(data: any) => setPhone(data.target.value)}/>
+                                <input maxLength={15} value={phone} id="input-phone-id" onChange={handleInputNumber}/>
                             </StyInputContent>
                             <StyInputContent id="input-4-id">
                                 <span>Email</span>
-                                <input id="input-email-id" onChange={(data: any) => setEmail(data.target.value)}/>
+                                <input maxLength={50} id="input-email-id" onChange={(data: any) => setEmail(data.target.value)}/>
                             </StyInputContent>
                         </StyRow>
                     </StyRegister>
