@@ -2,7 +2,7 @@ import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
-import { HstOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
+import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyContainerItems } from './styles';
 import { apiPizzaFilling } from '../../api/index';
 
@@ -58,7 +58,7 @@ export const PizzaFilling: React.FC = () => {
                 <span>Passo 4 de 7</span>
             </StySpanContainer>
                 <StyButtonContainer>
-                    <HstOnlyBorderButton id="button-id" action={() => changeRoute('pizza-size')} title="Voltar"/>
+                    <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-size')} title="Voltar"/>
                     <PizzariaButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaFilling ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>

@@ -2,7 +2,7 @@ import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
-import { HstOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
+import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyContainerItems } from './styles';
 import { apiPizzaSize } from '../../api/index';
 
@@ -59,7 +59,7 @@ export const PizzaSize: React.FC = () => {
                 <span>Passo 3 de 7</span>
             </StySpanContainer>
                 <StyButtonContainer>
-                    <HstOnlyBorderButton id="button-id" action={() => changeRoute('pizza-type-of-pasta')} title="Voltar"/>
+                    <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-type-of-pasta')} title="Voltar"/>
                     <PizzariaButton id="button-id" action={() =>  handleSubmit()} title="Próximo" disable={selectedPizzaSize ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>

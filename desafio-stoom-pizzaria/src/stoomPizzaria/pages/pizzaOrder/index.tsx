@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
-import { HstOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
+import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyModal, StyContainerWrapper, StyItemsOrder } from './styles';
 
 export const PizzaOrder: React.FC = () => {
@@ -124,7 +124,7 @@ export const PizzaOrder: React.FC = () => {
             {
                 openModalState === false &&
                 <StyButtonContainer>
-                    <HstOnlyBorderButton id="button-id" action={() => changeRoute('pizza-payment')} title="Voltar"/>
+                    <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-payment')} title="Voltar"/>
                     <PizzariaButton id="button-id" width="135px" title="Finalizar Pedido" action={() => handleSubmit()}/>
                 </StyButtonContainer>
             }

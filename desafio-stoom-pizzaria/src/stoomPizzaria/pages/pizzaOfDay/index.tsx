@@ -3,7 +3,7 @@ import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
 import { StyButtonContainer, StyContainerItems, StyItems, StyContainer } from './styles';
-import { HstOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
+import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { apiPizzaOfDay } from '../../api/index';
 
 export const PizzaOfDay: React.FC = () => {
@@ -61,7 +61,7 @@ export const PizzaOfDay: React.FC = () => {
                 <span>Ao juntar 100 pontos você ganha uma pizza GRÁTIS! =D</span>
                 </StyContainer>
                 <StyButtonContainer>
-                    <HstOnlyBorderButton id="button-id" action={() => changeRoute('stoom-welcome')} title="Voltar"/>
+                    <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('stoom-welcome')} title="Voltar"/>
                     <PizzariaButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaDay ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>

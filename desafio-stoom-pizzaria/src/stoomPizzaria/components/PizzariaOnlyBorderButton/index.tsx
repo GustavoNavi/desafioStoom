@@ -14,7 +14,7 @@ export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   borderRadius?: string;
 }
 
-export const HstOnlyBorderButton: React.FC<Props> = ({
+export const PizzariaOnlyBorderButton: React.FC<Props> = ({
   id,
   action = () => { },
   type = 'button',
