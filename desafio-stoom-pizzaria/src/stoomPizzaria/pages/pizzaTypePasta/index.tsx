@@ -1,16 +1,22 @@
 import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyContainerItems } from './styles';
 import { apiTypePasta } from '../../api/index';
 
+/**
+ * @description Pizzaria Type Pasta Page.
+ */
 export const PizzaTypePasta: React.FC = () => {
     const { changeRoute }: any = useContext(RouteContext);
     const [arrayPasta, setArrayPasta] = useState<string[]>();
     const [selectedTypePasta, setSelectedTypePasta] = useState<string>('');
 
+    /**
+     * @description Remove sessionStorages.
+     */
     useLayoutEffect(() => {
         sessionStorage.removeItem('typePasta');
         sessionStorage.removeItem('pizzaSize');
@@ -20,19 +26,32 @@ export const PizzaTypePasta: React.FC = () => {
         sessionStorage.removeItem('personalInformation');
     }, []);
 
+        /**
+         * @description Call method get of backend
+         */
         async function getPizzaTypePasta() {
             const response = await apiTypePasta.get('');
             setArrayPasta(response.data);
         }
 
+        /**
+         * @description call function getPizzaTypePasta.
+         */
         useLayoutEffect(() => {
             getPizzaTypePasta();
         }, []);
 
+        /**
+         * @description handle selected pizza type pasta.
+         * @param typePasta selected pizza type pasta.
+         */
         function handleSelectedTypePasta(typePasta: string) {
             setSelectedTypePasta(typePasta);
         }
 
+        /**
+         * @description handle submit.
+         */
         function handleSubmit() {
             sessionStorage.setItem('typePasta', selectedTypePasta);
             changeRoute('pizza-size')
@@ -59,7 +78,7 @@ export const PizzaTypePasta: React.FC = () => {
             </StySpanContainer>
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('stoom-welcome')} title="Voltar"/>
-                    <PizzariaButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedTypePasta? false : true}/>
+                    <PizzariaFillButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedTypePasta? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>
         );

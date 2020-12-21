@@ -1,10 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyModal, StyContainerWrapper, StyItemsOrder } from './styles';
 
+
+/**
+ * @description Pizzaria Order Page.
+ */
 export const PizzaOrder: React.FC = () => {
 
     const { changeRoute }: any = useContext(RouteContext);
@@ -20,6 +24,9 @@ export const PizzaOrder: React.FC = () => {
     const arrayPersonal: string[] | undefined = arrayPersonalInformation?.split(replace);
     const [openModalState, setOpenModalState] = useState<boolean>(false);
 
+    /**
+     * @description Get sessionStorages.
+     */
     useEffect(() => {
         setArrayPersonalInformation(sessionStorage.getItem('personalInformation'));
         setPizzaSizeInformation(sessionStorage.getItem('pizzaSize'));
@@ -29,6 +36,9 @@ export const PizzaOrder: React.FC = () => {
         setPizzaOfDayInformation(sessionStorage.getItem('pizzaDay'));
     }, []);
 
+            /**
+         * @description handle submit.
+         */
     function handleSubmit() {
         if((pizzaOfDayformation || (pizzaSizeInformation && pizzaTypePastaInformation &&
             pizzaFillingInformation)) && arrayPersonalInformation) {
@@ -125,13 +135,13 @@ export const PizzaOrder: React.FC = () => {
                 openModalState === false &&
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-payment')} title="Voltar"/>
-                    <PizzariaButton id="button-id" width="135px" title="Finalizar Pedido" action={() => handleSubmit()}/>
+                    <PizzariaFillButton id="button-id" width="135px" title="Finalizar Pedido" action={() => handleSubmit()}/>
                 </StyButtonContainer>
             }
             {
                 openModalState === true &&
                 <StyButtonContainer>
-                    <PizzariaButton id="button-id" width="135px" title="Voltar para o Início" action={() => changeRoute('stoom-welcome')}/>
+                    <PizzariaFillButton id="button-id" width="135px" title="Voltar para o Início" action={() => changeRoute('stoom-welcome')}/>
                 </StyButtonContainer>
             }
                 

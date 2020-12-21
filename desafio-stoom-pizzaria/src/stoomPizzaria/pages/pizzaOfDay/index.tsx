@@ -1,17 +1,23 @@
 import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { StyButtonContainer, StyContainerItems, StyItems, StyContainer } from './styles';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { apiPizzaOfDay } from '../../api/index';
 
+/**
+ * @description Pizzaria Of Day Page.
+ */
 export const PizzaOfDay: React.FC = () => {
 
     const { changeRoute }: any = useContext(RouteContext);
     const [arrayPizzaDay, setArrayPizzaDay] = useState<string[]>([]);
     const [selectedPizzaDay, setSelectedPizzaDay] = useState<boolean>(false);
 
+    /**
+     * @description Remove sessionStorages.
+     */
     useLayoutEffect(() => {
         sessionStorage.removeItem('typePasta');
         sessionStorage.removeItem('pizzaSize');
@@ -21,19 +27,32 @@ export const PizzaOfDay: React.FC = () => {
         sessionStorage.removeItem('personalInformation');
     }, []);
 
-        async function getPizzaTypePasta() {
+        /**
+         * @description Call method get of backend
+         */
+        async function getPizzaOfDay() {
             const response = await apiPizzaOfDay.get('');
             setArrayPizzaDay(response.data);
         }
 
+        /**
+         * @description call function getPizzaOfDay.
+         */
         useLayoutEffect(() => {
-            getPizzaTypePasta();
+            getPizzaOfDay();
         }, []);
 
+        /**
+         * @description handle selected pizza of day.
+         * @param typePasta selected pizza of day.
+         */
         function handleSelectedPizzaDay(typePasta: boolean) {
             setSelectedPizzaDay(typePasta);
         }
 
+        /**
+         * @description handle submit.
+         */
         function handleSubmit() {
             sessionStorage.setItem('pizzaDay', arrayPizzaDay?.toString());
             changeRoute('pizza-side-dish');
@@ -60,7 +79,7 @@ export const PizzaOfDay: React.FC = () => {
                 </StyContainer>
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('stoom-welcome')} title="Voltar"/>
-                    <PizzariaButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaDay ? false : true}/>
+                    <PizzariaFillButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaDay ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>
         );

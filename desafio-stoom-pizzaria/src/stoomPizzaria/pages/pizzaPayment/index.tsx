@@ -1,10 +1,13 @@
 import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyRegister, StyRow, StyInputContent } from './styles';
 
+/**
+ * @description Pizzaria Payment Page.
+ */
 export const PizzaPayment: React.FC = () => {
 
     const { changeRoute }: any = useContext(RouteContext);
@@ -13,11 +16,17 @@ export const PizzaPayment: React.FC = () => {
     const [phone, setPhone] = useState<string | number>('');
     const [email, setEmail] = useState<string>('');
 
+        /**
+     * @description Remove sessionStorage.
+     */
     useLayoutEffect(() => {
         sessionStorage.removeItem('personalInformation');
     }, []);
 
-    function onSubmit() {
+            /**
+         * @description handle submit.
+         */
+    function handleSubmit() {
         sessionStorage.setItem('personalInformation', `Nome: ${name}; Endereço: ${address}; Telefone: ${phone}; Email: ${email}`);
         changeRoute('pizza-order');
     }
@@ -55,7 +64,7 @@ export const PizzaPayment: React.FC = () => {
             </StySpanContainer>
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-side-dish')} title="Voltar"/>
-                    <PizzariaButton disable={name && address && phone && email ? false : true} id="button-id" action={() => onSubmit()} title="Próximo"/>
+                    <PizzariaFillButton disable={name && address && phone && email ? false : true} id="button-id" action={() => handleSubmit()} title="Próximo"/>
                 </StyButtonContainer>
             </PizzariaPage>
         );

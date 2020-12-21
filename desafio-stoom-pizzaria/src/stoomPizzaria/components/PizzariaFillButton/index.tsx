@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react';
 
 import { StyContainer } from './styles';
-
 export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   action?: () => void;
   width?: string;
@@ -12,7 +11,10 @@ export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   disable?: boolean;
 }
 
-export const PizzariaButton: React.FC<Props> = ({
+/**
+ * @description Pizza Page Body.
+ */
+export const PizzariaFillButton: React.FC<Props> = ({
   id,
   action = () => { },
   type = 'button',

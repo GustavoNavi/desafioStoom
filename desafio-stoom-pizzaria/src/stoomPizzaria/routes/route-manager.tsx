@@ -5,11 +5,19 @@ import getApplicationPages from './pages';
 import { IPage } from '../ts/interfaces/route-interfaces';
 import { PizzariaContext } from '../store/context';
 
+/**
+ * @description Route manager.
+ */
 export const RouteContext: React.Context<{}> = React.createContext({});
 const RouteProvider: React.FC = () => {
   const { pages, product }: any = useContext(PizzariaContext);
   const finalPages: IPage[] = getApplicationPages(pages, product);
 
+  /**
+   * @description Change current route.
+   * @param {string} alias page alias.
+   * @param {string} tab page tab.
+   */
   const changeRoute = useCallback((alias: string, tab?: string): void => {
     const pageAlias = finalPages.filter((page: IPage) => page.alias === alias);
     if (pageAlias.length === 1) {

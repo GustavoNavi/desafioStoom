@@ -8,6 +8,9 @@ interface Props {
   hasBorderRadius?: boolean;
 }
 
+/**
+ * @description Pizza Page Body.
+ */
 export const PizzariaPage: React.FC<Props> = ({
   children,
   hasMargin = true,

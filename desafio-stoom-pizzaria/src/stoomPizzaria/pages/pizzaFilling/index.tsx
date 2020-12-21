@@ -1,17 +1,23 @@
 import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyContainerItems } from './styles';
 import { apiPizzaFilling } from '../../api/index';
 
+/**
+ * @description Pizzaria Filling Page.
+ */
 export const PizzaFilling: React.FC = () => {
 
     const { changeRoute }: any = useContext(RouteContext);
     const [arrayFilling, setArrayFilling] = useState<string[]>();
     const [selectedPizzaFilling, setSelectedPizzaFilling] = useState<string>('');
 
+    /**
+     * @description Remove sessionStorages.
+     */
     useLayoutEffect(() => {
         sessionStorage.removeItem('pizzaFilling');
         sessionStorage.removeItem('pizzaDay');
@@ -19,23 +25,37 @@ export const PizzaFilling: React.FC = () => {
         sessionStorage.removeItem('personalInformation');
     }, []);
 
-        async function getPizzaTypePasta() {
+        /**
+         * @description Call method get of backend
+         */
+        async function getPizzaFilling() {
             const response = await apiPizzaFilling.get('');
             setArrayFilling(response.data);
         }
 
+        /**
+         * @description call function getPizzaFilling.
+         */
         useLayoutEffect(() => {
-            getPizzaTypePasta();
+            getPizzaFilling();
         }, []);
 
-        function handleSelectedPizzaSize(typePasta: string) {
+        /**
+         * @description handle selected pizza size.
+         * @param typePasta selected pizza size.
+         */
+        function handleSelectedPizzaFilling(typePasta: string) {
             setSelectedPizzaFilling(typePasta);
         }
 
+        /**
+         * @description handle submit.
+         */
         function handleSubmit() {
             sessionStorage.setItem('pizzaFilling', selectedPizzaFilling);
             changeRoute('pizza-side-dish');
         } 
+
         return (
             <PizzariaPage hasMargin={true} hasShadow={true}>
                  <StySpanContainer>
@@ -44,7 +64,7 @@ export const PizzaFilling: React.FC = () => {
                 {arrayFilling?.map((element: any, index: any) => 
                 {
                   return (
-                      <StyItems id={`${element}-items-id`} key={index} onClick={() => handleSelectedPizzaSize(element)} selected={selectedPizzaFilling === element ? true : false}>
+                      <StyItems id={`${element}-items-id`} key={index} onClick={() => handleSelectedPizzaFilling(element)} selected={selectedPizzaFilling === element ? true : false}>
                         <div id={`${index}-id`} key={index} >
                             <span>{element}</span>
                         </div>
@@ -57,7 +77,7 @@ export const PizzaFilling: React.FC = () => {
             </StySpanContainer>
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-size')} title="Voltar"/>
-                    <PizzariaButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaFilling ? false : true}/>
+                    <PizzariaFillButton id="button-id" action={() => handleSubmit()} title="Próximo" disable={selectedPizzaFilling ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>
         );

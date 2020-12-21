@@ -1,16 +1,22 @@
 import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
-import { PizzariaButton } from '../../components/PizzariaButton';
+import { PizzariaFillButton } from '../../components/PizzariaFillButton';
 import { PizzariaOnlyBorderButton } from '../../components/PizzariaOnlyBorderButton';
 import { StyButtonContainer, StySpanContainer, StyItems, StyContainerItems } from './styles';
 import { apiPizzaSize } from '../../api/index';
 
+/**
+ * @description Pizzaria Size Page.
+ */
 export const PizzaSize: React.FC = () => {
     const { changeRoute }: any = useContext(RouteContext);
     const [arraySize, setArraySize] = useState<string[]>();
     const [selectedPizzaSize, setSelectedPizzaSize] = useState<string>('');
 
+    /**
+     * @description Remove sessionStorages.
+     */
     useLayoutEffect(() => {
         sessionStorage.removeItem('pizzaSize');
         sessionStorage.removeItem('pizzaFilling');
@@ -19,19 +25,32 @@ export const PizzaSize: React.FC = () => {
         sessionStorage.removeItem('personalInformation');
     }, []);
 
-        async function getPizzaTypePasta() {
+        /**
+         * @description Call method get of backend
+         */
+        async function getPizzaSize() {
             const response = await apiPizzaSize.get('');
             setArraySize(response.data);
         }
 
+        /**
+         * @description call function getPizzaSize.
+         */
         useLayoutEffect(() => {
-            getPizzaTypePasta();
+            getPizzaSize();
         }, []);
 
+        /**
+         * @description handle selected pizza size.
+         * @param typePasta selected pizza size.
+         */
         function handleSelectedPizzaSize(typePasta: string) {
             setSelectedPizzaSize(typePasta);
         }
 
+        /**
+         * @description handle submit.
+         */
         function handleSubmit() {
             sessionStorage.setItem('pizzaSize', selectedPizzaSize);
             changeRoute('pizza-filling');
@@ -58,7 +77,7 @@ export const PizzaSize: React.FC = () => {
             </StySpanContainer>
                 <StyButtonContainer>
                     <PizzariaOnlyBorderButton id="button-id" action={() => changeRoute('pizza-type-of-pasta')} title="Voltar"/>
-                    <PizzariaButton id="button-id" action={() =>  handleSubmit()} title="Próximo" disable={selectedPizzaSize ? false : true}/>
+                    <PizzariaFillButton id="button-id" action={() =>  handleSubmit()} title="Próximo" disable={selectedPizzaSize ? false : true}/>
                 </StyButtonContainer>
             </PizzariaPage>
         );

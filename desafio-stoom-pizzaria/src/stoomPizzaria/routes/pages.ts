@@ -8,6 +8,10 @@ import PizzaTypePasta from '../pages/pizzaTypePasta';
 import PizzaWelcome from '../pages/pizzaWelcome';
 import { IPage } from '../ts/interfaces/route-interfaces';
 
+/**
+ * @description Gets Pizza pages.
+ * @param product product pizzariaStoom
+ */
 function getPizzaPages(product: string): IPage[] {
   return [
     {
@@ -61,6 +65,11 @@ function getPizzaPages(product: string): IPage[] {
   ];
 }
 
+/**
+ * @description Gets pages.
+ * @param ProductPages product pizzariaStoom page.
+ * @param product product pizzariaStoom alias.
+ */
 export default function getApplicationPages(
   ProductPages: IPage[],
   product: string

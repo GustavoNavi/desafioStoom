@@ -6,18 +6,15 @@ interface IPizzariaProvider {
   pages: IPage[];
 }
 
+/**
+ * @description Context of Pizzaria.
+ */
 export const PizzariaContext: React.Context<{}> = React.createContext({});
 const PizzariaProvider: React.FC<IPizzariaProvider> = ({
   product,
   pages,
   children,
 }) => {
-
-  const [firstRenderr, setFirstRender] = useState<boolean>(false);
-
-  useLayoutEffect(() => {
-      sessionStorage.setItem('reloaded', 'true');
-  }, [])
 
   return (
     <PizzariaContext.Provider

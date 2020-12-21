@@ -12,6 +12,10 @@ interface IPizzaria {
   themes?: Object;
 }
 
+/**
+ * @description Pizza Component.
+ * @param pages product page
+ */
 export const StoomPizzaria: React.FC<IPizzaria> = ({
   pages = [],
 }) => {

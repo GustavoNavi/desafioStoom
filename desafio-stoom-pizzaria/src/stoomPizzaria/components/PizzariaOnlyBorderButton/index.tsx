@@ -10,10 +10,12 @@ export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   title?: string;
   disable?: boolean;
   id: string;
-
   borderRadius?: string;
 }
 
+/**
+ * @description Pizza Only Border Button.
+ */
 export const PizzariaOnlyBorderButton: React.FC<Props> = ({
   id,
   action = () => { },
