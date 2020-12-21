@@ -9,12 +9,6 @@ interface Props {
   hasBorderRadius?: boolean;
 }
 
-/**
- * @description HST Page Body.
- * @param {number} width page width.
- * @param {boolean} hasMargin page margin condition.
- * @param {boolean} hasShadow page shadow condition.
- */
 export const PizzariaPage: React.FC<Props> = ({
   children,
   hasMargin = true,

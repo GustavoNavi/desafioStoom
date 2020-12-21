@@ -6,18 +6,13 @@ import CommonsProvider from './store/context';
 import PizzaImg from '../assets/images/pizzaStoom.jpg';
 import { StyContainer, StyContent } from './styles';
 
-interface IHstCommons {
+interface IPizzaria {
   product?: string;
   pages?: IPage[];
   themes?: Object;
 }
 
-/**
- * @description Hst Commons Component.
- * @param {IPage[]} pages product pages.
- * @returns HST Commons Template.
- */
-export const StoomPizzaria: React.FC<IHstCommons> = ({
+export const StoomPizzaria: React.FC<IPizzaria> = ({
   pages = [],
 }) => {
 
