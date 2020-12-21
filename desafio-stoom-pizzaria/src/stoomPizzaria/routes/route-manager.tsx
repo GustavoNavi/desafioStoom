@@ -1,22 +1,15 @@
 import React, { useCallback, useContext } from 'react';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import history from './history';
-import PrivateRout from './private-route';
 import getApplicationPages from './pages';
 import { IPage } from '../ts/interfaces/route-interfaces';
-import { CommonsContext } from '../store/context';
-import { Templates } from '../ts/interfaces/enum/route-enum';
+import { PizzariaContext } from '../store/context';
 
 export const RouteContext: React.Context<{}> = React.createContext({});
 const RouteProvider: React.FC = () => {
-  const { pages, product }: any = useContext(CommonsContext);
+  const { pages, product }: any = useContext(PizzariaContext);
   const finalPages: IPage[] = getApplicationPages(pages, product);
 
-  /**
-   * @description Change current route.
-   * @param {string} alias page alias.
-   * @param {string} tab page tab.
-   */
   const changeRoute = useCallback((alias: string, tab?: string): void => {
     const pageAlias = finalPages.filter((page: IPage) => page.alias === alias);
     if (pageAlias.length === 1) {
@@ -27,6 +20,7 @@ const RouteProvider: React.FC = () => {
   }, []);
 
   return (
+    <React.Fragment>
     <RouteContext.Provider value={{ changeRoute }}>
       <Router history={history}>
         <Switch>
@@ -36,13 +30,15 @@ const RouteProvider: React.FC = () => {
                 key={`route-${index}`}
                 path={page.path}
                 component={page.pageComponent}
+                exact
               />
             );
           })}
-          <Redirect from="*" to={`/${product}/stoom-welcome`} />
+          <Redirect from="*" to={`/${product}/stoom-welcome`} exact />
         </Switch>
       </Router>
     </RouteContext.Provider>
+    </React.Fragment>
   );
 };
 

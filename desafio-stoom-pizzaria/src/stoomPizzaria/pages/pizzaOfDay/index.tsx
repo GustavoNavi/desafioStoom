@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
+import React, {useContext, useLayoutEffect, useState} from 'react';
 import PizzariaPage from '../../components/PizzariaPage';
 import { RouteContext } from '../../routes/route-manager';
 import { PizzariaButton } from '../../components/PizzariaButton';
@@ -9,10 +9,8 @@ import { apiPizzaOfDay } from '../../api/index';
 export const PizzaOfDay: React.FC = () => {
 
     const { changeRoute }: any = useContext(RouteContext);
-    const [state, setState] = useState<any>();
     const [arrayPizzaDay, setArrayPizzaDay] = useState<string[]>([]);
     const [selectedPizzaDay, setSelectedPizzaDay] = useState<boolean>(false);
-    //const typePastaArray: string[] = arrayPasta?.split(replce);
 
     useLayoutEffect(() => {
         sessionStorage.removeItem('typePasta');
@@ -30,7 +28,7 @@ export const PizzaOfDay: React.FC = () => {
 
         useLayoutEffect(() => {
             getPizzaTypePasta();
-        }, [state]);
+        }, []);
 
         function handleSelectedPizzaDay(typePasta: boolean) {
             setSelectedPizzaDay(typePasta);

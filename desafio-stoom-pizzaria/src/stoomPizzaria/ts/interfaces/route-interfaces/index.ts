@@ -1,8 +1,6 @@
-import { Templates } from "../enum/route-enum";
-
 export interface IPage {
     alias: string;
     path: string | undefined;
-    template: Templates;
+    template: 'PUBLIC';
     pageComponent: any;
 }

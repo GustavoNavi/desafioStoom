@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IPage } from '../ts/interfaces/route-interfaces';
 
-interface ICommonsProvider {
+interface IPizzariaProvider {
   product: string;
   pages: IPage[];
 }
 
-export const CommonsContext: React.Context<{}> = React.createContext({});
-const CommonsProvider: React.FC<ICommonsProvider> = ({
+export const PizzariaContext: React.Context<{}> = React.createContext({});
+const PizzariaProvider: React.FC<IPizzariaProvider> = ({
   product,
   pages,
   children,
 }) => {
 
   return (
-    <CommonsContext.Provider
+    <PizzariaContext.Provider
       value={{
         product,
         pages,
       }}
     >
       {children}
-    </CommonsContext.Provider>
+    </PizzariaContext.Provider>
   );
 };
 
-export default CommonsProvider;
+export default PizzariaProvider;

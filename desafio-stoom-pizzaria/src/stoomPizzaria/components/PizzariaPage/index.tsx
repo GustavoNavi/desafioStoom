@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyContainer, StyContent } from './styles';
 import PizzaFaixa from '../../../assets/images/PizzaFaixa.png'
-import { apiTypePasta } from '../../api';
 
 interface Props {
   hasMargin?: boolean;

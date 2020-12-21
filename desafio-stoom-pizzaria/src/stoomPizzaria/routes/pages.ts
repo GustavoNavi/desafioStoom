@@ -6,84 +6,73 @@ import PizzaSideDish from '../pages/pizzaSideDish';
 import PizzaSize from '../pages/pizzaSize';
 import PizzaTypePasta from '../pages/pizzaTypePasta';
 import PizzaWelcome from '../pages/pizzaWelcome';
-import { Templates } from '../ts/interfaces/enum/route-enum';
 import { IPage } from '../ts/interfaces/route-interfaces';
 
-/**
- * @description Gets Commons native pages.
- * @param product current product.
- * @returns Commons native pages.
- */
-function getCommonsPages(product: string): IPage[] {
+function getPizzaPages(product: string): IPage[] {
   return [
     {
       alias: 'stoom-welcome',
       path: `/${product}/stoom-welcome`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaWelcome,
     },
     {
       alias: 'pizza-of-day',
       path: `/${product}/pizza-of-day`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaOfDay,
     },
     {
       alias: 'pizza-type-of-pasta',
       path: `/${product}/pizza-type-of-pasta`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaTypePasta,
     },
     {
       alias: 'pizza-size',
       path: `/${product}/pizza-size`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaSize,
     },
     {
       alias: 'pizza-filling',
       path: `/${product}/pizza-filling`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaFilling,
     },
     {
       alias: 'pizza-side-dish',
       path: `/${product}/pizza-side-dish`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaSideDish,
     },
     {
       alias: 'pizza-payment',
       path: `/${product}/pizza-payment`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaPayment,
     },
     {
       alias: 'pizza-order',
       path: `/${product}/pizza-order`,
-      template: Templates.public,
+      template: 'PUBLIC',
       pageComponent: PizzaOrder,
     },
   ];
 }
 
-/**
- * @description Gets merged application pages.
- * @param ProductPages Product Pages Array.
- * @returns Merged application pages.
- */
 export default function getApplicationPages(
   ProductPages: IPage[],
   product: string
 ): IPage[] {
-  const CommonsPages: IPage[] = getCommonsPages(product);
-  CommonsPages.forEach((commonsPage: IPage) => {
+  const PizzaPages: IPage[] = getPizzaPages(product);
+  PizzaPages.forEach((pizzaPages: IPage) => {
     ProductPages.forEach((productPage: IPage) => {
-      if (productPage.alias === commonsPage.alias) {
-        commonsPage.pageComponent = productPage.pageComponent;
-        commonsPage.path = productPage.path;
+      if (productPage.alias === pizzaPages.alias) {
+        pizzaPages.pageComponent = productPage.pageComponent;
+        pizzaPages.path = productPage.path;
       }
     });
   });
-  return [...CommonsPages, ...ProductPages];
+  return [...PizzaPages, ...ProductPages];
 }

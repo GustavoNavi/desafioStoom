@@ -8,10 +8,8 @@ import { apiTypePasta } from '../../api/index';
 
 export const PizzaTypePasta: React.FC = () => {
     const { changeRoute }: any = useContext(RouteContext);
-    const [state, setState] = useState<any>();
     const [arrayPasta, setArrayPasta] = useState<string[]>();
     const [selectedTypePasta, setSelectedTypePasta] = useState<string>('');
-    //const typePastaArray: string[] = arrayPasta?.split(replce);
 
     useLayoutEffect(() => {
         sessionStorage.removeItem('typePasta');
@@ -29,7 +27,7 @@ export const PizzaTypePasta: React.FC = () => {
 
         useLayoutEffect(() => {
             getPizzaTypePasta();
-        }, [state]);
+        }, []);
 
         function handleSelectedTypePasta(typePasta: string) {
             setSelectedTypePasta(typePasta);
